@@ -99,9 +99,14 @@ async def get_gemini_analysis(cv_text, job_description):
         }
     }
 
-    # La clave API se inyecta automáticamente en el entorno de Canvas.
-    # No es necesario proporcionarla manualmente aquí.
-    api_key = ""
+    # --- CAMBIO AQUÍ: Obtener la clave API de st.secrets ---
+    try:
+        api_key = st.secrets["GEMINI_API_KEY"]
+    except KeyError:
+        st.error("Error: La clave 'GEMINI_API_KEY' no se encontró en los secretos de Streamlit. Por favor, configura tu archivo secrets.toml.")
+        return None
+    # --- FIN DEL CAMBIO ---
+
     api_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key={api_key}"
 
     retries = 0
