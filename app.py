@@ -38,7 +38,6 @@ def extract_text_from_docx(uploaded_file):
         # Muestra un mensaje de error si la lectura del DOCX falla
         st.error(f"Error al leer el DOCX: {e}")
         return None
-
 # --- Función para Llamar a la API de Gemini ---
 async def get_gemini_analysis(cv_text, job_description):
     """
@@ -182,7 +181,8 @@ with col2:
 st.markdown("---")
 
 # Botón para iniciar el análisis
-if st.button("🚀 Analizar Candidato con IA Gemini", type="primary"):
+# CAMBIO AQUÍ: Texto del botón modificado a "Analizar con IA"
+if st.button("🚀 Analizar con IA", type="primary"):
     # Verifica que tanto el CV como la descripción del puesto estén presentes
     if cv_text and job_description:
         st.info("Analizando el CV con IA Gemini. Esto puede tardar unos segundos...")
