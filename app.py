@@ -127,7 +127,7 @@ async def get_gemini_analysis(cv_text, job_description):
                 return None
         except requests.exceptions.RequestException as e:
             # Maneja errores de red o de la API con reintentos exponenciales
-            st.warning(f"Error de red o API (intento {retries + 1}/{max_retries}): {e}")
+            st.warning(f"Error de red o de la API (intento {retries + 1}/{max_retries}): {e}")
             retries += 1
             import asyncio # Importa asyncio solo cuando se necesita para el sleep
             await asyncio.sleep(2 ** retries) # Retraso exponencial antes del siguiente reintento
@@ -181,11 +181,11 @@ with col2:
 st.markdown("---")
 
 # Botón para iniciar el análisis
-# CAMBIO AQUÍ: Texto del botón modificado a "Analizar con IA"
 if st.button("🚀 Analizar con IA", type="primary"):
     # Verifica que tanto el CV como la descripción del puesto estén presentes
     if cv_text and job_description:
-        st.info("Analizando el CV con IA Gemini. Esto puede tardar unos segundos...")
+        # CAMBIO AQUÍ: Texto del mensaje de información modificado
+        st.info("Analizando el CV con la IA. Esto puede tardar unos segundos...")
         
         # Importar asyncio solo cuando sea necesario, para evitar errores de importación circular
         import asyncio
